@@ -11,6 +11,7 @@
 .log
 dist
 *.ds_Store
+*.sqlite3
 
 
 # Gradle
