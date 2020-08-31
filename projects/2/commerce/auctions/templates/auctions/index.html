@@ -3,5 +3,17 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    <ul>
+        {% for listing in listings %}
+            <li>{{ listing.name }} - {{ listing.description }} - ${{ listing.asking_price }} - Current Price: {{ bids.bid_ammount }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
+
+
+{# <form action="{% url 'book' flight.id %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <select name="passenger">#}
+{#            {% for passenger in non_passengers %}#}
+{#                <option value=""{{ passenger.id }}>{{ passenger }}</option>#}
+{#            {% endfor %}#}

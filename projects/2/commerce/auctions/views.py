@@ -4,11 +4,42 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User
+from .models import *
+
+
+# The default route of your web application should let users view
+# all of the currently active auction listings. For each active listing, this page should
+# display (at minimum) the title, description, current price, and photo (if one exists for the listing).
+
+# def flight(request, flight_id):
+#     flight = Flight.objects.get(id=flight_id)
+#
+#     return render(request, "flights/flight.html", {
+#         "flight": flight,
+#         "passengers": flight.passengers.all(),
+#         "non_passengers": Passenger.objects.exclude(flights=flight).all()
+#     })
+
+# def flight(request, flight_id):
+#     flight = Flight.objects.get(id=flight_id)
+#     passengers = flight.passengers.all()
+#     return render(request, "flights/flight.html", {
+#         "flight": flight,
+#         "passengers": passengers
+#     })
+
+# AuthorizedEmail.objects.aggregate(Max('added'))
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    # listings = Listing.objects.all()
+    # bids = Bid.objects.all()
+
+    return render(request, "auctions/index.html", {
+        "listings": 'listings',
+        # "bids": bids
+
+    })
 
 
 def login_view(request):

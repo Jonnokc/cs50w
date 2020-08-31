@@ -18,17 +18,20 @@ class Listing(models.Model):
 
 class Comment(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commenter')
-    item = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='comment_item')
+    item = models.ManyToManyField(Listing, blank=True, related_name='comment_item')
     description = models.CharField(max_length=300)
+
 
     def __str__(self):
         return f"{self.username} {self.description}"
 
 
 class Bid(models.Model):
-    item = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='bids')
+    item = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='bid_item')
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE, related_name='bidder')
     bid_amount = models.DecimalField(max_digits=8, decimal_places=2)
     bid_time = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return f"{self.item} {self.bid_amount} {self.bid_time}"
